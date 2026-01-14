@@ -15,12 +15,18 @@ import java.util.Locale;
 // ✅ The Adapter creates and binds each product “row/card” in the RecyclerView
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
+    public interface OnProductClickListener {
+        void onProductClick(Product product);
+    }
+
     private final List<Product> allProducts; //all products
     private final List<Product> visibleProducts; //products matching the current filter
+    private final OnProductClickListener listener; //click listener for product items
 
-    public ProductAdapter(List<Product> products) {
+    public ProductAdapter(List<Product> products, OnProductClickListener listener) {
         this.allProducts = new ArrayList<>(products);
         this.visibleProducts = new ArrayList<>(products);
+        this.listener = listener;
     }
 
     @NonNull
@@ -28,7 +34,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     // ✅ creates each row
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).
+                inflate(R.layout.item_product, parent, false);
         return new ProductViewHolder(v);
     }
 
@@ -38,6 +45,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         Product p = visibleProducts.get(position);
         holder.tvName.setText(p.name);
         holder.tvPrice.setText(p.price);
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onProductClick(p);
+            }
+        });
     }
 
     @Override
@@ -46,6 +58,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         return visibleProducts.size();
     }
 
+    // ✅ filters products based on the query
     public void filter(String query) {
         visibleProducts.clear();
 
@@ -62,6 +75,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         notifyDataSetChanged();
     }
 
+
+    // ✅ ViewHolder class representing each product row
     static class ProductViewHolder extends RecyclerView.ViewHolder {
         TextView tvName, tvPrice;
 

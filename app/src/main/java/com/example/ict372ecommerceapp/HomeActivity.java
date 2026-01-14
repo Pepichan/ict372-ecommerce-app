@@ -5,6 +5,8 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.content.Intent;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,16 +26,25 @@ public class HomeActivity extends AppCompatActivity {
         RecyclerView rv = findViewById(R.id.rvProducts); //gets UI components by id
         rv.setLayoutManager(new LinearLayoutManager(this)); //makes the RecyclerView a vertical scrolling list
 
-        ArrayList<Product> data = new ArrayList<>(); //creates sample product data
+        // ✅ Sample product data
+        ArrayList<Product> data = new ArrayList<>();
         data.add(new Product("Linen Chair", "$321"));
         data.add(new Product("Pearl Lamp", "$191"));
         data.add(new Product("Modern Chair", "$120"));
         data.add(new Product("Wood Table", "$450"));
 
-        adapter = new ProductAdapter(data); //binds product data to list rows
+
+        // ✅ sets up the RecyclerView with the ProductAdapter and click listener
+        ProductAdapter adapter = new ProductAdapter(data, product -> {
+            Intent intent = new Intent(HomeActivity.this, ProductDetailActivity.class);
+            intent.putExtra("product_name", product.name);
+            intent.putExtra("product_price", product.price);
+            startActivity(intent);
+        });
         rv.setAdapter(adapter);
 
         AutoCompleteTextView etSearch = findViewById(R.id.etSearch); //gets the search input field
+
 
         // ✅ typed-ahead suggestions
         String[] suggestions = new String[]{"Linen Chair", "Pearl Lamp", "Modern Chair", "Wood Table"};
@@ -44,6 +55,7 @@ public class HomeActivity extends AppCompatActivity {
         );
         etSearch.setAdapter(sugAdapter); //sets the adapter for suggestions
 
+
         // ✅ Filter by input
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -52,6 +64,8 @@ public class HomeActivity extends AppCompatActivity {
             }
             @Override public void afterTextChanged(Editable s) {}
         });
+
+
         // ✅ Filter by selecting a suggestion
         etSearch.setOnItemClickListener((parent, view, position, id) -> {
             String selected = (String) parent.getItemAtPosition(position);
