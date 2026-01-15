@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-// ✅ The Adapter creates and binds each product “row/card” in the RecyclerView
+// ✅ The Adapter creates and binds each product "row/card" in the RecyclerView
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
     public interface OnProductClickListener {
@@ -21,11 +21,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     private final List<Product> allProducts; //all products
     private final List<Product> visibleProducts; //products matching the current filter
-    private final OnProductClickListener listener; //click listener for product items
+    private OnProductClickListener listener; //click listener for product items
 
     public ProductAdapter(List<Product> products, OnProductClickListener listener) {
         this.allProducts = new ArrayList<>(products);
         this.visibleProducts = new ArrayList<>(products);
+        this.listener = listener;
+    }
+
+    public void setOnProductClickListener(OnProductClickListener listener) {
         this.listener = listener;
     }
 
