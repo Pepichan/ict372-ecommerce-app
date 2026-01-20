@@ -10,25 +10,28 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ICT372EcommerceApp">
+        android:theme="@style/Theme.Ict372ecommerceapp">
+
+        <!-- 1. The LoginActivity is now set as the Starting Screen (Launcher) -->
         <activity
-            android:name=".CartActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ProductDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".HomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- 2. Registration Activity declared once -->
+        <activity
+            android:name=".RegistrationActivity"
+            android:exported="false" />
+
+        <!-- 3. Product Detail Activity declared once -->
+        <activity
+            android:name=".ProductdetailActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
