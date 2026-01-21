@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ICT372EcommerceApp"
+rootProject.name = "ict372ecommerceapp"
 include(":app")
