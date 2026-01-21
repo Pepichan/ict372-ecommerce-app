@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- App Theme Colors -->
+    <color name="background_beige">#F6F1EC</color>
+    <color name="card_white">#FFFFFF</color>
+    <color name="text_primary">#1E1E1E</color>
+    <color name="text_secondary">#666666</color>
+    <color name="text_hint">#999999</color>
+    <color name="input_background">#FFFFFF</color>
+    <color name="input_stroke">#E0E0E0</color>
+    <color name="button_primary">#1E1E1E</color>
+    <color name="accent_gold">#D4A574</color>
+</resources>
