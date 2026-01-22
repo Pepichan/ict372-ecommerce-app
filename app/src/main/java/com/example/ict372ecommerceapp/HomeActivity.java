@@ -130,7 +130,10 @@ public class HomeActivity extends AppCompatActivity {
 
             popup.setOnMenuItemClickListener(item -> {
                 int id = item.getItemId();
-                if (id == R.id.menu_cart) {
+                if (id == R.id.menu_profile) {
+                    startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
+                    return true;
+                } else if (id == R.id.menu_cart) {
                     startActivity(new Intent(HomeActivity.this, CartActivity.class));
                     return true;
                 } else if (id == R.id.menu_orders) {

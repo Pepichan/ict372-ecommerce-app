@@ -111,4 +111,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return user;
     }
+
+    // Update user name
+    public boolean updateUserName(int userId, String newName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_NAME, newName);
+
+        int rowsAffected = db.update(TABLE_USERS, values,
+                COLUMN_ID + "=?",
+                new String[]{String.valueOf(userId)});
+        db.close();
+        return rowsAffected > 0;
+    }
+
+    // Update user password
+    public boolean updateUserPassword(int userId, String newPassword) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_PASSWORD, newPassword);
+
+        int rowsAffected = db.update(TABLE_USERS, values,
+                COLUMN_ID + "=?",
+                new String[]{String.valueOf(userId)});
+        db.close();
+        return rowsAffected > 0;
+    }
 }
