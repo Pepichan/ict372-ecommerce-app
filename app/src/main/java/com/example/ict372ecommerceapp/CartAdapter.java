@@ -48,7 +48,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         CartItem item = cartItems.get(position);
 
         holder.tvProductName.setText(item.productName);
-        holder.tvProductPrice.setText(item.productPrice);
+        holder.tvProductPrice.setText(item.getSubtotalFormatted());
         holder.tvQuantity.setText(String.valueOf(item.quantity));
 
         // Set product image
