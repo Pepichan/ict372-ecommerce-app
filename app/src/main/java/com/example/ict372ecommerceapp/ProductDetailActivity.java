@@ -30,7 +30,9 @@ public class ProductDetailActivity extends AppCompatActivity {
 
     private Product product;
     private String selectedColor = "";
+    private int selectedColorIndex = 0;
     private int quantity = 1;
+    private int[] colorImageResIds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,7 @@ public class ProductDetailActivity extends AppCompatActivity {
         String productDescription = getIntent().getStringExtra("PRODUCT_DESCRIPTION");
         int productImageResId = getIntent().getIntExtra("PRODUCT_IMAGE_RES_ID", 0);
         String[] productColors = getIntent().getStringArrayExtra("PRODUCT_COLORS");
+        colorImageResIds = getIntent().getIntArrayExtra("PRODUCT_COLOR_IMAGES");
 
         // Create product object
         product = new Product(productId, productName, productPrice, productDescription, productImageResId, productColors);
@@ -96,6 +99,7 @@ public class ProductDetailActivity extends AppCompatActivity {
 
         for (int i = 0; i < colors.length; i++) {
             final String color = colors[i];
+            final int colorIndex = i;
 
             // Create circular color view
             View colorView = new View(this);
@@ -124,8 +128,12 @@ public class ProductDetailActivity extends AppCompatActivity {
 
             // Set click listener
             colorView.setOnClickListener(v -> {
-                selectColor(color);
+                selectColor(color, colorIndex);
                 updateColorSelection(colorView);
+                // Update product image based on selected color
+                if (colorImageResIds != null && colorIndex < colorImageResIds.length) {
+                    imgProduct.setImageResource(colorImageResIds[colorIndex]);
+                }
             });
 
             // Select first color by default
@@ -138,8 +146,9 @@ public class ProductDetailActivity extends AppCompatActivity {
         }
     }
 
-    private void selectColor(String color) {
+    private void selectColor(String color, int index) {
         selectedColor = color;
+        selectedColorIndex = index;
     }
 
     private void updateColorSelection(View selectedView) {
@@ -171,13 +180,19 @@ public class ProductDetailActivity extends AppCompatActivity {
     }
 
     private void addToCart() {
+        // Get the correct image for the selected color
+        int imageToUse = product.imageResId;
+        if (colorImageResIds != null && selectedColorIndex < colorImageResIds.length) {
+            imageToUse = colorImageResIds[selectedColorIndex];
+        }
+
         // Add item to cart using CartManager
         CartManager cartManager = CartManager.getInstance(this);
         cartManager.addToCart(
                 product.id,
                 product.name,
                 product.price,
-                product.imageResId,
+                imageToUse,
                 selectedColor != null ? selectedColor : "",
                 quantity
         );

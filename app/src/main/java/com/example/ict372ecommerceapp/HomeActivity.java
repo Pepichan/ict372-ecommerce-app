@@ -42,8 +42,8 @@ public class HomeActivity extends AppCompatActivity {
             "Linen Chair",
             "$321.00",
             "Crafted with premium linen and plush cushioning, this chair offers timeless style and ultimate relaxation.",
-            R.drawable.linenchair,
-            new String[]{"#B8B8B8", "#6B4423", "#7B68A6", "#D4A373"}
+            new String[]{"#B8B8B8", "#6B4423"},
+            new int[]{R.drawable.linenchair, R.drawable.brownlinenchair}
         ));
 
         data.add(new Product(
@@ -51,8 +51,8 @@ public class HomeActivity extends AppCompatActivity {
             "Pearl Lamp",
             "$191.00",
             "Elegant pearl-finish lamp that adds a soft, ambient glow to any room. Perfect for modern interiors.",
-            R.drawable.lamp,
-            new String[]{"#F5F5DC", "#FFD700", "#C0C0C0"}
+            new String[]{"#F5F5DC", "#FFD700"},
+            new int[]{R.drawable.lamp, R.drawable.goldlamp}
         ));
 
         data.add(new Product(
@@ -60,8 +60,8 @@ public class HomeActivity extends AppCompatActivity {
             "Modern Chair",
             "$120.00",
             "Sleek and contemporary design with ergonomic support. Ideal for home offices and dining areas.",
-            R.drawable.modernchair,
-            new String[]{"#000000", "#FFFFFF", "#808080", "#8B4513"}
+            new String[]{"#F5F5DC", "#000000"},
+            new int[]{R.drawable.modernchair, R.drawable.blackmodernchair}
         ));
 
         data.add(new Product(
@@ -69,8 +69,8 @@ public class HomeActivity extends AppCompatActivity {
             "Wood Table",
             "$450.00",
             "Handcrafted solid wood table with natural grain patterns. Durable and timeless piece for any dining space.",
-            R.drawable.woodetable,
-            new String[]{"#8B4513", "#D2691E", "#A0522D"}
+            new String[]{"#8B4513", "#D2691E"},
+            new int[]{R.drawable.woodetable, R.drawable.chocolatewoodtable}
         ));
 
         data.add(new Product(
@@ -78,8 +78,8 @@ public class HomeActivity extends AppCompatActivity {
             "Velvet Sofa",
             "$899.00",
             "Luxurious velvet sofa with deep seating and soft cushions. A statement piece for your living room.",
-            R.drawable.velvetsofa,
-            new String[]{"#4A4A4A", "#1E3A5F", "#8B0000", "#2F4F4F"}
+            new String[]{"#1E3A5F", "#4A4A4A"},
+            new int[]{R.drawable.velvetsofa, R.drawable.grayvelvetsofa}
         ));
 
         data.add(new Product(
@@ -87,8 +87,8 @@ public class HomeActivity extends AppCompatActivity {
             "Bookshelf",
             "$275.00",
             "Modern open bookshelf with clean lines and sturdy shelves. Perfect for displaying books and decor.",
-            R.drawable.bookshelf,
-            new String[]{"#FFFFFF", "#000000", "#8B4513"}
+            new String[]{"#8B4513", "#000000"},
+            new int[]{R.drawable.bookshelf, R.drawable.blackbookshelf}
         ));
 
         data.add(new Product(
@@ -96,8 +96,8 @@ public class HomeActivity extends AppCompatActivity {
             "Floor Mirror",
             "$189.00",
             "Full-length floor mirror with elegant frame. Adds light and depth to any room.",
-            R.drawable.floormirror,
-            new String[]{"#FFD700", "#C0C0C0", "#000000"}
+            new String[]{"#000000", "#FFD700"},
+            new int[]{R.drawable.floormirror, R.drawable.goldfloormirror}
         ));
 
         data.add(new Product(
@@ -105,8 +105,8 @@ public class HomeActivity extends AppCompatActivity {
             "Coffee Table",
             "$320.00",
             "Minimalist coffee table with tempered glass top and wooden legs. Stylish centerpiece for your living space.",
-            R.drawable.coffeetable,
-            new String[]{"#8B4513", "#000000", "#FFFFFF"}
+            new String[]{"#8B4513", "#000000"},
+            new int[]{R.drawable.coffeetable, R.drawable.blackcoffetable}
         ));
 
         // ✅ sets up the RecyclerView with the ProductAdapter and click listener
@@ -118,6 +118,7 @@ public class HomeActivity extends AppCompatActivity {
             intent.putExtra("PRODUCT_DESCRIPTION", product.description);
             intent.putExtra("PRODUCT_IMAGE_RES_ID", product.imageResId);
             intent.putExtra("PRODUCT_COLORS", product.colors);
+            intent.putExtra("PRODUCT_COLOR_IMAGES", product.colorImageResIds);
             startActivity(intent);
         });
         rv.setAdapter(adapter);
