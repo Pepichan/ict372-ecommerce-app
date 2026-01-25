@@ -176,7 +176,64 @@
                     android:text="Password must be at least 6 characters"
                     android:textSize="12sp"
                     android:textColor="@color/text_hint"
-                    android:layout_marginBottom="24dp"/>
+                    android:layout_marginBottom="16dp"/>
+
+                <!-- Privacy Policy Checkbox -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <CheckBox
+                        android:id="@+id/cbPrivacyPolicy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/checkbox_custom"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="2dp"/>
+
+                    <TextView
+                        android:id="@+id/tvPrivacyPolicy"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="I agree to the Privacy Policy and Terms of Service"
+                        android:textSize="12sp"
+                        android:textColor="@color/text_secondary"
+                        android:lineSpacingExtra="2dp"/>
+
+                </LinearLayout>
+
+                <!-- Promotional Emails Checkbox -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="24dp">
+
+                    <CheckBox
+                        android:id="@+id/cbPromotionalEmails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/checkbox_custom"
+                        android:minWidth="0dp"
+                        android:minHeight="0dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="2dp"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Optional: I want to receive promotional emails from the app"
+                        android:textSize="12sp"
+                        android:textColor="@color/text_secondary"
+                        android:lineSpacingExtra="2dp"/>
+
+                </LinearLayout>
 
                 <!-- Register Button -->
                 <androidx.cardview.widget.CardView
